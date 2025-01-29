@@ -1,0 +1,24 @@
+Microsoft Visual Studio Solution File, Format Version 12.00
+# Visual Studio Version 17
+VisualStudioVersion = 17.5.2.0
+MinimumVisualStudioVersion = 10.0.40219.1
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "wordle-mini-project-CondesnsedMilk", "wordle-mini-project-CondesnsedMilk.csproj", "{84157A28-2520-A1B1-7EC5-966F8BAC0547}"
+EndProject
+Global
+	GlobalSection(SolutionConfigurationPlatforms) = preSolution
+		Debug|Any CPU = Debug|Any CPU
+		Release|Any CPU = Release|Any CPU
+	EndGlobalSection
+	GlobalSection(ProjectConfigurationPlatforms) = postSolution
+		{84157A28-2520-A1B1-7EC5-966F8BAC0547}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{84157A28-2520-A1B1-7EC5-966F8BAC0547}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{84157A28-2520-A1B1-7EC5-966F8BAC0547}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{84157A28-2520-A1B1-7EC5-966F8BAC0547}.Release|Any CPU.Build.0 = Release|Any CPU
+	EndGlobalSection
+	GlobalSection(SolutionProperties) = preSolution
+		HideSolutionNode = FALSE
+	EndGlobalSection
+	GlobalSection(ExtensibilityGlobals) = postSolution
+		SolutionGuid = {C1B40470-DCD8-4494-B650-288DF9B1C6B6}
+	EndGlobalSection
+EndGlobal
