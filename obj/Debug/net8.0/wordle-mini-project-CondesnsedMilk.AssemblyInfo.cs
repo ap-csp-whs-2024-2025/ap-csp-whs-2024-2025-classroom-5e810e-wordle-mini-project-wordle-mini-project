@@ -13,7 +13,7 @@ using System.Reflection;
 [assembly: System.Reflection.AssemblyCompanyAttribute("wordle-mini-project-CondesnsedMilk")]
 [assembly: System.Reflection.AssemblyConfigurationAttribute("Debug")]
 [assembly: System.Reflection.AssemblyFileVersionAttribute("1.0.0.0")]
-[assembly: System.Reflection.AssemblyInformationalVersionAttribute("1.0.0+0db4965d8c578ed9f873a698001cbc4353d5c2ff")]
+[assembly: System.Reflection.AssemblyInformationalVersionAttribute("1.0.0+8ff2a5bfe77dc10835b5b12e859c8b2f2f24dae7")]
 [assembly: System.Reflection.AssemblyProductAttribute("wordle-mini-project-CondesnsedMilk")]
 [assembly: System.Reflection.AssemblyTitleAttribute("wordle-mini-project-CondesnsedMilk")]
 [assembly: System.Reflection.AssemblyVersionAttribute("1.0.0.0")]

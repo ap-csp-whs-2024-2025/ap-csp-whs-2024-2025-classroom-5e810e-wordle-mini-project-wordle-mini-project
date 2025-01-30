@@ -1,4 +1,6 @@
-﻿namespace wordle_mini_project_CondesnsedMilk;
+﻿using System.Diagnostics.Metrics;
+
+namespace wordle_mini_project_CondesnsedMilk;
 
 class Program
 {
@@ -6,36 +8,61 @@ class Program
     {
         bool done = false;
         List<int> input = new List<int>();
-
-        Console.WriteLine("This is a spin off of wordle");
         
         while(!done)
         {
-            Console.WriteLine("There are 4 numbers you need to guess. n/ Try inputting 4 numbers.");
-
-            for (int i = 0; i < 4; i++)
-            {
-                input.Append(Convert.ToInt32(Console.ReadLine()));
-            }
-            
-            done = true;
+            InputAnswer(input);
         }
+    }
 
-        Display(input);
+    static void CheckAnswer(List<int> input, bool done)
+    {
+        var inputtedAnswer = input;
+        var secretAnswer = input;
+        int counter = 0;
+
+        while(!done)
+        {
+            if(inputtedAnswer == secretAnswer)
+            {
+                done = true;
+                Console.WriteLine($"You got the answer in {counter} times!");
+            }
+            else
+            {
+                InputAnswer(input);
+                counter++;
+            }
+        }
         
     }
 
-    static void Display(List<int> input)
+    static void CreateAnswer()
     {
-        for (int i=0; i < input.Count; i++)
-            {
-                Console.WriteLine("test");
-                Console.WriteLine(input[i]);
-            }
+        var rand = new Random();
+        List<int> secretAnswer = new List<int>{};
+
+        for (int i = 0; i < 4; i++)
+        {
+            secretAnswer.Add(rand.Next(10));
+        }
+
+        CheckAnswer(secretAnswer, false);
+
+        //Console.WriteLine(string.Join(", ", secretAnswer));
     }
 
-    static void Answer()
+
+    static void InputAnswer(List<int> input)
     {
-        List<int> answer = new List<int>{1,2,3,4};
+        Console.WriteLine("This is a spin off of wordle");
+        Console.WriteLine("There are 4 numbers you need to guess. Try inputting 4 numbers.");
+
+        for (int i = 0; i < 4; i++)
+        {
+            input.Add(Convert.ToInt32(Console.ReadLine()));
+        }
+
+        CheckAnswer(input, false);
     }
 }
