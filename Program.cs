@@ -7,11 +7,12 @@ class Program
     static void Main(string[] args)
     {
         bool done = false;
-        List<int> input = new List<int>();
+
+        CreateAnswer();
         
         while(!done)
         {
-            InputAnswer(input);
+            InputAnswer(false);
         }
     }
 
@@ -19,18 +20,26 @@ class Program
     {
         var inputtedAnswer = input;
         var secretAnswer = input;
-        int counter = 0;
+        int counter = 1;
 
         while(!done)
         {
             if(inputtedAnswer == secretAnswer)
             {
+                Console.WriteLine(string.Join(", ", input));
+                if (counter == 1)
+                {
+                    Console.WriteLine($"You got the answer in {counter} attempt!");
+                }
+                else
+                {
+                    Console.WriteLine($"You got the answer in {counter} attempts!");
+                }
                 done = true;
-                Console.WriteLine($"You got the answer in {counter} times!");
             }
             else
             {
-                InputAnswer(input);
+                InputAnswer(true);
                 counter++;
             }
         }
@@ -47,16 +56,26 @@ class Program
             secretAnswer.Add(rand.Next(10));
         }
 
-        CheckAnswer(secretAnswer, false);
+        InputAnswer(false, secretAnswer);
 
         //Console.WriteLine(string.Join(", ", secretAnswer));
     }
 
 
-    static void InputAnswer(List<int> input)
+    static void InputAnswer(bool retriedYet)
     {
-        Console.WriteLine("This is a spin off of wordle");
-        Console.WriteLine("There are 4 numbers you need to guess. Try inputting 4 numbers.");
+        List<int> input = new List<int>();
+
+        if(retriedYet == false)
+        {
+            Console.WriteLine("This is a spin off of wordle");
+            Console.WriteLine("There are 4 numbers you need to guess. Try inputting 4 numbers.");
+        }
+        else
+        {
+            Console.WriteLine("Try again!");
+        }
+        
 
         for (int i = 0; i < 4; i++)
         {
