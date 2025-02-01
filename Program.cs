@@ -24,8 +24,6 @@ class Program
                 break;
             }
         }
-
-        // I have yet to implement if the user wants to play another game
     }
 
     static void CheckAnswer(List<int> userAnswer, List<int> secretAnswer, int counter) // Are 4 parameters too much? Do I need to seperate the functions
@@ -37,10 +35,30 @@ class Program
         {
             for (int i = 0; i < secretAnswer.Count; i++) // Loop to see if each individual element is equal to the answer
             {
+                bool hasNumSomewhere = false;
+                int numTimes = 0;
+
+                for (int j = 0; j < secretAnswer.Count; j++) 
+                {
+                    if (userAnswer[i] == secretAnswer[j])
+                    {
+                        hasNumSomewhere = true;
+                        numTimes++;
+                    }
+                }
+
                 if(userAnswer[i] == secretAnswer[i])
                 {
                     rightOrWrong.Add("O");
                     rightCounter++;
+                }
+                else if (hasNumSomewhere)
+                {
+                    for(numTimes < 0; numTimes--;)
+                    {
+                        rightOrWrong.Add("+");
+                    }
+                    
                 }
                 else
                 {
@@ -102,7 +120,7 @@ class Program
         if(retriedYet == false)
         {
             Console.WriteLine("This is a spin off of wordle");
-            Console.WriteLine("There are 4 numbers you need to guess. Try inputting 4 numbers. You have 10 attempts");
+            Console.WriteLine("There are 4 numbers you need to guess. You have 10 attempts");
             Console.WriteLine();
         }
         else
@@ -122,8 +140,23 @@ class Program
             }
         }
         
-        input = Console.ReadLine()!.Split().Select(int.Parse).ToList(); // To take inputs like "1 3 5 7" and put them into the list
-        // I have yet to add checks if the input is correct
+        while (true) // To take inputs like "1 3 5 7" and put them into the list
+        {
+            Console.Write("Enter your guess (4 numbers separated by spaces): ");
+            string userInput = Console.ReadLine()!;
+            string[] inputs = userInput.Split();
+
+            // Check if there are exactly 4 elements and all are valid integers
+            if (inputs.Length == 4 && inputs.All(s => int.TryParse(s, out _)))
+            {
+                input = inputs.Select(int.Parse).ToList();
+                break;
+            }
+            else
+            {
+                Console.WriteLine("Invalid input. Please enter exactly 4 numbers separated by spaces.");
+            }
+        }
 
         CheckAnswer(input, secretAnswer, counter);
     }
