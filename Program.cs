@@ -91,10 +91,7 @@ class Program
             counter++;
         }
         
-        for (int i = 0; i < 4; i++)
-        {
-            input.Add(Convert.ToInt32(Console.ReadLine()));
-        }
+        input = Console.ReadLine()!.Split().Select(int.Parse).ToList();
 
         CheckAnswer(input, secretAnswer, false, counter);
     }
