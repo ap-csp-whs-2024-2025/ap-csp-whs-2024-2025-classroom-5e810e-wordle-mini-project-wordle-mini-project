@@ -1,4 +1,5 @@
 ﻿using System.Diagnostics.Metrics;
+using System.Net.Security;
 
 namespace wordle_mini_project_CondesnsedMilk;
 
@@ -6,42 +7,55 @@ class Program
 {
     static void Main(string[] args)
     {
-        bool done = false;
+        List<int> input = new List<int>();
+        //bool done = false;
 
         CreateAnswer();
         
-        while(!done)
-        {
-            InputAnswer(false);
-        }
     }
 
-    static void CheckAnswer(List<int> input, bool done)
+    static void CheckAnswer(List<int> userAnswer, List<int> secretAnswer, bool done, int counter)
     {
-        var inputtedAnswer = input;
-        var secretAnswer = input;
-        int counter = 1;
+        List<string> rightOrWrong = new List<string>();
+        int rightCounter = 0;
 
         while(!done)
         {
-            if(inputtedAnswer == secretAnswer)
+            for (int i = 0; i < secretAnswer.Count; i++)
             {
-                Console.WriteLine(string.Join(", ", input));
-                if (counter == 1)
+                if(userAnswer[i] == secretAnswer[i])
                 {
+                    rightOrWrong.Add("O");
+                    rightCounter++;
+                    
+                }
+                else
+                {
+                    rightOrWrong.Add("X");
+                }
+            }
+
+            if(rightCounter == secretAnswer.Count)
+            {
+                if (counter == 1)
+                {            
+                    Console.WriteLine(string.Join(", ", rightOrWrong));
                     Console.WriteLine($"You got the answer in {counter} attempt!");
                 }
                 else
                 {
+                    Console.WriteLine(string.Join(", ", rightOrWrong));
                     Console.WriteLine($"You got the answer in {counter} attempts!");
                 }
-                done = true;
+                
             }
             else
             {
-                InputAnswer(true);
-                counter++;
+                Console.WriteLine(string.Join(", ", rightOrWrong));
+                InputAnswer(true, secretAnswer, counter);
             }
+
+            done = true;
         }
         
     }
@@ -56,13 +70,13 @@ class Program
             secretAnswer.Add(rand.Next(10));
         }
 
-        InputAnswer(false, secretAnswer);
+        Console.WriteLine(string.Join(", ", secretAnswer));
+        InputAnswer(false, secretAnswer, 1);
 
-        //Console.WriteLine(string.Join(", ", secretAnswer));
     }
 
 
-    static void InputAnswer(bool retriedYet)
+    static void InputAnswer(bool retriedYet, List<int> secretAnswer, int counter)
     {
         List<int> input = new List<int>();
 
@@ -74,14 +88,14 @@ class Program
         else
         {
             Console.WriteLine("Try again!");
+            counter++;
         }
         
-
         for (int i = 0; i < 4; i++)
         {
             input.Add(Convert.ToInt32(Console.ReadLine()));
         }
 
-        CheckAnswer(input, false);
+        CheckAnswer(input, secretAnswer, false, counter);
     }
 }
